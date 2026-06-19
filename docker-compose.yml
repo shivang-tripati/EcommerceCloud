@@ -63,7 +63,7 @@ services:
       - "traefik.docker.network=cas-network"
 
     expose:
-      - 3000"
+      - 3000
     networks:
       - app-network
       - cas-network
