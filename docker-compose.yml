@@ -52,10 +52,21 @@ services:
       
       # App Configuration
       NODE_ENV: production
-    ports:
-      - "${APP_PORT:-3000}:3000"
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.quickcart.rule=Host(`ecom-admin.duckdns.org`)"
+      - "traefik.http.routers.quickcart.entrypoints=websecure"
+      - "traefik.http.routers.quickcart.tls=true"
+      - "traefik.http.routers.quickcart.tls.certresolver=cert-resolver"
+      - "traefik.http.services.quickcart.loadbalancer.server.port=3000"
+      - "traefik.docker.network=cas-network"
+
+    expose:
+      - 3000"
     networks:
       - app-network
+      - cas-network
 
 volumes:
   postgres_data:
@@ -63,3 +74,6 @@ volumes:
 networks:
   app-network:
     driver: bridge
+
+  cas-network:
+    external: true
