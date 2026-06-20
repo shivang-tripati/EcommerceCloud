@@ -234,7 +234,7 @@ async function main() {
       price: 44.99,
       categoryId: getCategory('T-Shirts').id,
       sizeId: getSize('M').id,
-      colorId: '#000080' ? getColor('#000080').id : getColor('#000000').id,
+      colorId: getColor('#000080').id,
       images: [PRODUCT_IMAGES.tshirts[1], PRODUCT_IMAGES.tshirts[3]],
       isFeatured: false,
     },
